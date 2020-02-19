@@ -46,7 +46,6 @@ struct ContentView: View {
                      }
                  }
 
-                
                 print("Button end")
             }) {
                LoginButtonContent()
