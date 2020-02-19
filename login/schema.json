@@ -377,7 +377,7 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
+        "kind": "OBJECT",rqhunt_rq-onsite_jgwkx3aboif2-jbbzamb_20200218_050000
         "name": "LoginResponse",
         "description": "",
         "fields": [
@@ -388,6 +388,18 @@
             "type": {
               "kind": "ENUM",
               "name": "AuthState",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "jwt",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,

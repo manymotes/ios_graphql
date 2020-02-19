@@ -33,16 +33,19 @@ struct ContentView: View {
                 .padding(.bottom, 20)
             Button(action: {print("Button tapped")
                 
-                Network.shared.apollo.fetch(query: GetUserByIdQuery(id: "0ff43c60-7285-4ae7-a712-34bfd9e3680d")) {
+                Network.shared.apollo.perform(mutation: LoginMutation(email: self.email, password: self.password)) {
                     result in
                     switch result {
                     case .success(let graphQLResult):
-                      print("Success! Result: \(graphQLResult)")
+                        print("Success! Result: \(graphQLResult.data)")
+                        UserManager.shared.currentAuthToken = graphQLResult.data?.login.jwt
+                        print("jwt:")
+                        print(UserManager.shared.currentAuthToken)
                     case .failure(let error):
                       print("Failure! Error: \(error)")
                     }
                 }
-                
+
                 print("Button end")
             }) {
                LoginButtonContent()

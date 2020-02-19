@@ -1,7 +1,6 @@
-
-
-query getUserById($id: ID!){
-  getUserById(id: $id) {
-    firstName
+mutation Login($email: String!, $password: String!) {
+ login(email: $email, password: $password) {
+    authState
+    userUuid
   }
 }
