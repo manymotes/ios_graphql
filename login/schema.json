@@ -394,6 +394,18 @@
             "deprecationReason": null
           },
           {
+            "name": "jwt",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "userUuid",
             "description": "",
             "args": [],

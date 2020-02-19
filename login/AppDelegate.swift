@@ -37,19 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         // Override point for customization after application launch. Here you can out the code you want.
 
-        Network.shared.apollo.fetch(query: GetUserByIdQuery(id: "0ff43c60-7285-4ae7-a712-34bfd9e3680d")) {
-            result in
-            switch result {
-            case .success(let graphQLResult):
-              print("Success! Result: \(graphQLResult)")
-            case .failure(let error):
-              print("Failure! Error: \(error)")
-            }
-        }
         
         return true
     }
