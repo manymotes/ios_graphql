@@ -8,17 +8,19 @@
 
 
 import SwiftUI
+import UIKit
+import CoreData
 
 struct ContentView: View {
     
     @State var email: String = ""
     @State var password: String = ""
+    @State var showView = false
     
     let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
 
-    var authCont = AuthController()
-
   var body: some View {
+    NavigationView {
         VStack {
             WelcomeText()
             TextField("Email", text: $email)
@@ -39,8 +41,14 @@ struct ContentView: View {
                      case .success(let graphQLResult):
                         print("Success! Result: \(String(describing: graphQLResult.data))")
                         UserManager.shared.currentAuthToken = graphQLResult.data?.login.jwt ?? "no token"
-                        print("jwt:")
-                        print(UserManager.shared.currentAuthToken)
+//                        print("jwt:")
+//                        print(UserManager.shared.currentAuthToken)
+                        if (graphQLResult.data?.login.jwt != nil) {
+                            self.showView = true
+                        }
+                    
+
+                        
                      case .failure(let error):
                        print("Failure! Error: \(error)")
                      }
@@ -50,18 +58,22 @@ struct ContentView: View {
             }) {
                LoginButtonContent()
             }
+            NavigationLink(destination: CreateDealView(), isActive: self.$showView) {
+                 EmptyView()
+             }
         }
         .padding()
+    }.navigationBarBackButtonHidden(true)
     }
 }
 
-#if DEBUG
-struct ContentView_Previews : PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-#endif
+//#if DEBUG
+//struct ContentView_Previews : PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
+//#endif
 
 struct WelcomeText: View {
     var body: some View {
